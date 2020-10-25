@@ -16,11 +16,37 @@ RSpec.describe PrimeNumberTable do
     expect(PrimeNumberTable::VERSION).not_to be nil
   end
 
+  describe '#print' do
+    subject { described_class.method(:print) }
+
+    context 'with default table_size' do
+      it 'prints 3*3 table' do
+        expect { subject.call }.to output(
+          "  4   5   7 \n" \
+          "  5   6   8 \n" \
+          "  7   8  10 \n"
+        ).to_stdout
+      end
+    end
+
+    context 'with table_size = 5' do
+      it 'prints 5*5 table' do
+        expect { subject.call(table_size: 5) }.to output(
+          "  4   5   7   9  13 \n" \
+          "  5   6   8  10  14 \n" \
+          "  7   8  10  12  16 \n" \
+          "  9  10  12  14  18 \n" \
+          " 13  14  16  18  22 \n"
+        ).to_stdout
+      end
+    end
+  end
+
   describe '#prime_number' do
     subject { described_class.method(:prime_number) }
 
     it 'returns a prime number by its index' do
-      PRIME_NUMBERS.each_with_index { |n, i| expect(subject[i + 1]).to eq(n) }
+      PRIME_NUMBERS.each_with_index { |n, i| expect(subject.call(i + 1)).to eq(n) }
     end
   end
 
@@ -28,7 +54,7 @@ RSpec.describe PrimeNumberTable do
     subject { described_class.method(:prime?) }
 
     it 'determines if the number is prime' do
-      (0..1_000).each { |n| expect(subject[n]).to eq(PRIME_NUMBERS.include?(n)) }
+      (0..1_000).each { |n| expect(subject.call(n)).to eq(PRIME_NUMBERS.include?(n)) }
     end
   end
 end
