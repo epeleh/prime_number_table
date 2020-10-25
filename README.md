@@ -4,9 +4,9 @@ Simple program which takes a single number n from the user and in response displ
 So, for example, for input `3` the output should read:
 
 ```
-4 5 7
-5 6 8
-7 8 10
+  4   5   7
+  5   6   8
+  7   8  10
 ```
 
 ## Installation
