@@ -13,7 +13,7 @@ PRIME_NUMBERS = [
 
 RSpec.describe PrimeNumberTable do
   it 'has a version number' do
-    expect(PrimeNumberTable::VERSION).not_to be nil
+    expect(described_class::VERSION).not_to be nil
   end
 
   describe '#print' do

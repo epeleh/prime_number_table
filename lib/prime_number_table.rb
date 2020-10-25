@@ -3,8 +3,6 @@
 require 'prime_number_table/version'
 
 module PrimeNumberTable
-  class Error < StandardError; end
-
   def self.print(table_size: 3)
     table_size.times do |row|
       table_size.times { |column| printf('%3d ', prime_number(row + 1) + prime_number(column + 1)) }
