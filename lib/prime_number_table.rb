@@ -4,8 +4,8 @@ require 'prime_number_table/version'
 
 module PrimeNumberTable
   def self.print(table_size: 3)
-    table_size.times do |row|
-      table_size.times { |column| printf('%3d ', prime_number(row + 1) + prime_number(column + 1)) }
+    (1..table_size).each do |row|
+      (1..table_size).each { |column| printf('%3d ', prime_number(row) + prime_number(column)) }
       puts
     end
   end
