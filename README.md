@@ -21,12 +21,12 @@ Or install it yourself as:
 ## Usage
 
     $ pnt
-    > Please give matrix dimension (<width>x<height>)
-    $ 5x4
-    > Should I use (P)rime numbers or (F)ibonacci numbers?
-    $ F
-    > Multiplication (*) or Addition (+)
-    $ M
+    => Please give matrix dimension (<width>x<height>)
+    -> 5x4
+    => Should I use (P)rime numbers or (F)ibonacci numbers?
+    -> F
+    => Multiplication (*) or Addition (+)
+    -> M
 
       1   1   2   3   5
       1   1   2   3   5

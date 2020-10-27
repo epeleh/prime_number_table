@@ -28,9 +28,12 @@ RSpec.describe PrimeNumberTable do
     it 'works' do
       allow(described_class).to receive(:gets).and_return('5x4', 'F', 'M')
       expect { subject.call }.to output(
-        "> Please give matrix dimension (<width>x<height>)\n" \
-        "> Should I use (P)rime numbers or (F)ibonacci numbers?\n" \
-        "> Multiplication (*) or Addition (+)\n" \
+        "=> Please give matrix dimension (<width>x<height>)\n" \
+        "-> " \
+        "=> Should I use (P)rime numbers or (F)ibonacci numbers?\n" \
+        "-> " \
+        "=> Multiplication (*) or Addition (+)\n" \
+        "-> " \
         "\n" \
         "  1   1   2   3   5 \n" \
         "  1   1   2   3   5 \n" \

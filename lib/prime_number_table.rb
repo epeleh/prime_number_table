@@ -7,13 +7,13 @@ module PrimeNumberTable
 
   def dialog
     width, height = loop do
-      puts '> Please give matrix dimension (<width>x<height>)'
+      printf "=> Please give matrix dimension (<width>x<height>)\n-> "
       dimension = gets.delete(' ').strip.downcase
       break dimension if /^\d+x\d+$/ =~ dimension
     end.split('x').map(&:to_i)
 
     numbers = begin
-      puts '> Should I use (P)rime numbers or (F)ibonacci numbers?'
+      printf "=> Should I use (P)rime numbers or (F)ibonacci numbers?\n-> "
       input = gets.strip.downcase
       { p: :prime, f: :fibonacci }.fetch(input.to_sym, input).tap(&method(:validate_numbers!))
     rescue ArgumentError
@@ -21,7 +21,7 @@ module PrimeNumberTable
     end
 
     operation = begin
-      puts '> Multiplication (*) or Addition (+)'
+      printf "=> Multiplication (*) or Addition (+)\n-> "
       input = gets.strip.downcase
       { m: :multiplication, a: :addition }.fetch(input.to_sym, input).tap(&method(:validate_operation!))
     rescue ArgumentError

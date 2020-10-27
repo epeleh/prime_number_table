@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    prime_number_table (2.0)
+    prime_number_table (2.1)
 
 GEM
   remote: https://rubygems.org/
