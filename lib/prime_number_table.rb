@@ -5,9 +5,37 @@ require 'prime_number_table/version'
 module PrimeNumberTable
   extend self
 
+  def dialog
+    width, height = loop do
+      puts '> Please give matrix dimension (<width>x<height>)'
+      dimension = gets.delete(' ').strip.downcase
+      break dimension if /^\d+x\d+$/ =~ dimension
+    end.split('x').map(&:to_i)
+
+    numbers = begin
+      puts '> Should I use (P)rime numbers or (F)ibonacci numbers?'
+      input = gets.strip.downcase
+      { p: :prime, f: :fibonacci }.fetch(input.to_sym, input).tap(&method(:validate_numbers!))
+    rescue ArgumentError
+      retry
+    end
+
+    operation = begin
+      puts '> Multiplication (*) or Addition (+)'
+      input = gets.strip.downcase
+      { m: :multiplication, a: :addition }.fetch(input.to_sym, input).tap(&method(:validate_operation!))
+    rescue ArgumentError
+      retry
+    end
+
+    puts
+    print(width: width, height: height, numbers: numbers, operation: operation)
+    puts
+  end
+
   def print(table_size: nil, width: 3, height: 3, numbers: :prime, operation: :addition)
-    validate_numbers(numbers)
-    validate_operation(operation)
+    validate_numbers!(numbers)
+    validate_operation!(operation)
 
     operation = { addition: :+, multiplication: :* }.fetch(operation.to_sym, operation)
 
@@ -45,14 +73,14 @@ module PrimeNumberTable
 
   private
 
-  def validate_numbers(numbers)
+  def validate_numbers!(numbers)
     numbers_options = %w[prime fibonacci]
     return if numbers_options.include?(numbers.to_s)
 
     raise(ArgumentError, "numbers: '#{numbers}', allowed options: '#{numbers_options.join("', '")}'")
   end
 
-  def validate_operation(operation)
+  def validate_operation!(operation)
     operation_options = %w[addition + multiplication *]
     return if operation_options.include?(operation.to_s)
 

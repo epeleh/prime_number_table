@@ -22,6 +22,25 @@ RSpec.describe PrimeNumberTable do
     expect(described_class::VERSION).not_to be nil
   end
 
+  describe '#dialog' do
+    subject { described_class.method(:dialog) }
+
+    it 'works' do
+      allow(described_class).to receive(:gets).and_return('5x4', 'F', 'M')
+      expect { subject.call }.to output(
+        "> Please give matrix dimension (<width>x<height>)\n" \
+        "> Should I use (P)rime numbers or (F)ibonacci numbers?\n" \
+        "> Multiplication (*) or Addition (+)\n" \
+        "\n" \
+        "  1   1   2   3   5 \n" \
+        "  1   1   2   3   5 \n" \
+        "  2   2   4   6  10 \n" \
+        "  3   3   6   9  15 \n" \
+        "\n"
+      ).to_stdout
+    end
+  end
+
   describe '#print' do
     subject { described_class.method(:print) }
 
@@ -48,7 +67,7 @@ RSpec.describe PrimeNumberTable do
         "  6   9  15 \n" \
         " 10  15  25 \n"
       ),
-      { width: 5, height: 4, numbers: :fibonacci, operation: :multiplication } => (
+      { width: 5, height: 4, numbers: :fibonacci, operation: :* } => (
         "  1   1   2   3   5 \n" \
         "  1   1   2   3   5 \n" \
         "  2   2   4   6  10 \n" \
