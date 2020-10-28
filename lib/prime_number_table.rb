@@ -8,7 +8,7 @@ module PrimeNumberTable
   def dialog
     width, height = loop do
       printf "=> Please give matrix dimension (<width>x<height>)\n-> "
-      dimension = gets.delete(' ').strip.downcase
+      dimension = gets.delete(' ').downcase
       break dimension if /^\d+x\d+$/ =~ dimension
     end.split('x').map(&:to_i)
 
