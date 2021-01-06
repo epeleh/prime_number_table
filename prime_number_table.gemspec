@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.homepage      = 'https://github.com/epeleh/prime_number_table'
   spec.summary       = 'CLI application'
-  spec.description   = 'Takes a single number n from the user and in response displays n*n table.'
+  spec.description   = 'Displays a table of numbers.'
   spec.license       = 'MIT'
 
   spec.required_ruby_version = Gem::Requirement.new('>= ' + File.read('.ruby-version').strip)

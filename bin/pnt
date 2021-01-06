@@ -2,4 +2,4 @@
 # frozen_string_literal: true
 
 require 'prime_number_table'
-PrimeNumberTable.print(table_size: ARGV[0].to_i.nonzero? || 3)
+PrimeNumberTable.dialog
